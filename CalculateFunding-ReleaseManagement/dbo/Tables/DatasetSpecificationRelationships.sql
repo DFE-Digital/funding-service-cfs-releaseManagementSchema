@@ -1,0 +1,31 @@
+﻿CREATE TABLE [dbo].[DatasetSpecificationRelationships]
+(
+	[DatasetSpecificationRelationshipVersionId] NVARCHAR(255) NOT NULL, 
+    [DatasetSpecificationRelationshipId] NVARCHAR(255) NOT NULL,
+    [Name] NVARCHAR(255) NOT NULL, 
+    [DatasetDefinitionId] NVARCHAR(255) NULL,
+    [DatasetDefinitionName] NVARCHAR(255) NULL,
+    [SpecificationId] VARCHAR(64) NOT NULL, 
+    [PublishedSpecificationId] VARCHAR(64) NULL, 
+    [Description] NVARCHAR(MAX) NOT NULL, 
+    [DatasetId] NVARCHAR(255) NULL, 
+    [DatasetVersionNumber] INT NULL, 
+    [IsSetAsProviderData] BIT NOT NULL DEFAULT 0, 
+    [ConverterEnabled] BIT NOT NULL DEFAULT 0, 
+    [UsedInDataAggregations] BIT NOT NULL DEFAULT 0, 
+    [lastUpdated] DATETIME2 NULL, 
+    [RelationshipType] NVARCHAR(64) NOT NULL, 
+    [PublishedSpecificationConfiguration] NVARCHAR(MAX) NULL, 
+    [Version] INT NOT NULL, 
+    [AuthorId] NVARCHAR(256) NULL, 
+    [AuthorName] NVARCHAR(256) NULL, 
+    [Comment] NVARCHAR(MAX) NULL, 
+    [PublishStatus] NVARCHAR(50) NOT NULL, 
+    [CreatedAt] DATETIME2 NOT NULL, 
+    [UpdatedAt] DATETIME2 NOT NULL, 
+    [IsDeleted] BIT NOT NULL DEFAULT 0,
+    [IsLatest] BIT NOT NULL DEFAULT 0,
+    CONSTRAINT [PK_DatasetSpecificationRelationshipVersionId] PRIMARY KEY ([DatasetSpecificationRelationshipVersionId]), 
+    CONSTRAINT [FK_DatasetSpecificationRelationships_Specifications] FOREIGN KEY ([SpecificationId]) REFERENCES [Specifications]([SpecificationId])
+    );
+

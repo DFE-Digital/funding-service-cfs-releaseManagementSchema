@@ -1,0 +1,26 @@
+﻿CREATE TABLE [dbo].[Templates]
+(
+    [TemplateId] UNIQUEIDENTIFIER NOT NULL, 
+    [Description] NVARCHAR(MAX) NULL, 
+    [TemplateJson] NVARCHAR(MAX) NULL, 
+    [MajorVersion] INT NOT NULL, 
+    [MinorVersion] INT NOT NULL, 
+    [Name] NVARCHAR(512) NOT NULL, 
+    [SchemaVersion] NVARCHAR (64) NOT NULL, 
+    [EntityId] NVARCHAR(512) NOT NULL, 
+    [Status] NVARCHAR(50) NOT NULL, 
+    [Version] INT NOT NULL, 
+    [Date] DATETIME2 NOT NULL, 
+    [Comment] NVARCHAR(MAX) NULL, 
+    [PublishStatus] NVARCHAR(50) NOT NULL, 
+    [CreatedAt] DATETIME2 NOT NULL, 
+    [UpdatedAt] DATETIME2 NOT NULL, 
+    [IsDeleted] BIT NOT NULL DEFAULT 0, 
+    [FundingStreamId] INT NOT NULL, 
+    [FundingPeriodId] INT NOT NULL, 
+    [AuthorId]  NVARCHAR (64)   NOT NULL,
+    [AuthorName]  NVARCHAR (512) NOT NULL,
+    CONSTRAINT [PK_Templates] PRIMARY KEY CLUSTERED ([TemplateId] ASC),    
+    CONSTRAINT [FK_Templates_FundingPeriods] FOREIGN KEY ([FundingPeriodId]) REFERENCES [dbo].[FundingPeriods] ([FundingPeriodId]),
+    CONSTRAINT [FK_Templates_FundingStreams] FOREIGN KEY ([FundingStreamId]) REFERENCES [dbo].[FundingStreams] ([FundingStreamId])
+)

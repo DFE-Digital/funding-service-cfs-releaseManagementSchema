@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[DatasetVersions]
+(
+	[DatasetVersionId] NVARCHAR(255) NOT NULL, 
+    [DatasetId] NVARCHAR(255) NOT NULL, 
+    [BlobName] NVARCHAR(1024) NOT NULL, 
+    [RowCount] INT NOT NULL, 
+    [NewRowCount] INT NOT NULL, 
+    [AmendedRowCount] INT NOT NULL, 
+    [UploadedBlobFilePath] NVARCHAR(1024) NULL, 
+    [ChangeType] NVARCHAR(50) NOT NULL, 
+    [FundingStreamId] INT NOT NULL, 
+    [ProviderVersionId] NVARCHAR(50) NULL, 
+    [Description] NVARCHAR(MAX) NULL, 
+    [Version] INT NOT NULL, 
+    [Date] DATETIME2 NOT NULL, 
+    [AuthorId] NVARCHAR(256) NULL, 
+    [AuthorName] NVARCHAR(256) NULL, 
+    [Comment] NVARCHAR(MAX) NULL, 
+    [PublishStatus] NVARCHAR(50) NOT NULL, 
+    [CreatedAt] DATETIME2 NOT NULL, 
+    [UpdatedAt] DATETIME2 NOT NULL, 
+    [IsDeleted] BIT NOT NULL DEFAULT 0,
+    [IsLatest] BIT NOT NULL DEFAULT 0,
+    CONSTRAINT [PK_DatasetVersionId] PRIMARY KEY ([DatasetVersionId]),
+    CONSTRAINT [FK_DatasetVersion_Datasets] FOREIGN KEY ([DatasetId]) REFERENCES [Datasets]([DatasetId]),
+    CONSTRAINT [FK_DatasetVersions_FundingStreams] FOREIGN KEY ([FundingStreamId]) REFERENCES [FundingStreams]([FundingStreamId])
+    )

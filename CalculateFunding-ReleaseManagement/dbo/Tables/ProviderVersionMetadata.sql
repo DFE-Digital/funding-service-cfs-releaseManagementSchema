@@ -1,0 +1,22 @@
+﻿CREATE TABLE [dbo].[ProviderVersionMetadata] (
+    [ProviderVersionMetadataId] NVARCHAR(50) NOT NULL,
+    [Providers] NVARCHAR(50)  NULL,
+    [CurrentProviderVersionId] NVARCHAR(50) NOT NULL,
+    [ProviderVersionId] NVARCHAR(50) NOT NULL,
+    [VersionType] NVARCHAR(50) NOT NULL,
+    [Name] NVARCHAR(50) NOT NULL,
+    [Description] NVARCHAR(255) NOT NULL,
+    [Version] INT NOT NULL,
+    [TargetDate] DATETIME2 NOT NULL,
+    [FundingStreamId] INT NOT NULL,
+    [ValidationResult] NVARCHAR(50) NOT NULL,
+    [Created] DATETIME2 NOT NULL,
+    [CreatedAt] DATETIME2 NOT NULL,
+    [UpdatedAt] DATETIME2 NOT NULL,
+    [IsDeleted] BIT NOT NULL DEFAULT 0,
+    CONSTRAINT [PK_ProviderVersionMetadata] PRIMARY KEY ([ProviderVersionMetadataId]),
+    CONSTRAINT [UQ_ProviderVersionMetadata_providerVersionId] UNIQUE ([providerVersionId]),
+    CONSTRAINT FK_ProviderVersionMetadata_FundingStream FOREIGN KEY ([fundingStream]) REFERENCES [dbo].[FundingStreams]([FundingStreamId]),
+    CONSTRAINT [FK_ProviderVersionMetadata_CurrentProviderVersion] FOREIGN KEY ([CurrentProviderVersionId]) 
+        REFERENCES [dbo].[CurrentProviderVersion] ([CurrentProviderVersionId]),
+);
